@@ -141,7 +141,7 @@ object Form1: TForm1
     Left = 24
     Top = 136
     Width = 321
-    Height = 89
+    Height = 133
     TabOrder = 1
     object PNGButton: TRadioButton
       Left = 16
@@ -172,6 +172,20 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+    end
+    object PDFButton: TRadioButton
+      Left = 16
+      Top = 86
+      Width = 73
+      Height = 33
+      Caption = 'PDF'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
     end
   end
   object StartButton: TButton

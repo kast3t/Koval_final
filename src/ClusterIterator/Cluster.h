@@ -4,7 +4,7 @@
 #include <string>
 #include "BaseFileSystem.h"
 
-enum class ClusterEnum { None, Unknown, PNG, EXE };
+enum class ClusterEnum { None, Unknown, PNG, EXE, PDF };
 
 class Cluster
 {

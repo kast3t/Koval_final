@@ -32,6 +32,7 @@ __published:	// IDE-managed Components
 	TLabel *Label5;
 	TLabel *ClustersFoundLabel;
 	TLabel *ClusterSizeLabel;
+	TRadioButton *PDFButton;
 	void __fastcall StartButtonClick(TObject *Sender);
 	void __fastcall StopButtonClick(TObject *Sender);
 

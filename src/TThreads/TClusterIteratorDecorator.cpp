@@ -120,6 +120,9 @@ ClusterEnum __fastcall TClusterIteratorDecorator::getClusterType()
 	else if(Form1->EXEButton->Checked) {
 		return  ClusterEnum::EXE;
 	}
+	else if(Form1->PDFButton->Checked) {
+		return  ClusterEnum::PDF;
+	}
 
 	return ClusterEnum::None;
 }

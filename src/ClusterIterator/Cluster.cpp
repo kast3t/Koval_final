@@ -46,6 +46,7 @@ ClusterEnum Cluster::getClusterType() {
 	// Сигнатуры файлов
 	BYTE PNG[8] = { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A };
 	BYTE EXE[2] = { 0x4D, 0x5A };
+	BYTE PDF[5] = { 0x25, 0x50, 0x44, 0x46, 0x2D };
 
 	if (data == NULL) {
 		throw "Ошибка определения типа кластера: данные кластера не были прочитаны методом readCluster";
@@ -55,6 +56,9 @@ ClusterEnum Cluster::getClusterType() {
 	}
 	else if (memcmp(data, EXE, 2) == 0) {
 		clusterType = ClusterEnum::EXE;
+	}
+	else if (memcmp(data, PDF, 5) == 0) {
+		clusterType = ClusterEnum::PDF;
 	}
 	else {
 		clusterType = ClusterEnum::Unknown;
@@ -69,6 +73,7 @@ char* Cluster::getClusterTypeChar() {
 	switch (clusterType) {
 		case ClusterEnum::PNG: return "PNG";
 		case ClusterEnum::EXE: return "EXE";
+		case ClusterEnum::PDF: return "PDF";
 		default: return "Unknown";
 	}
 }
