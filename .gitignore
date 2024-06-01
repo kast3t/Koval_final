@@ -1,0 +1,8 @@
+/Win32/
+/Virtual-TreeView-8.0.3/
+/__astcache/
+/__history/
+/__recovery/
+/src/*/__history/
+*.tmp
+*.local
