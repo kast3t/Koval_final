@@ -1,17 +1,19 @@
 #include "FAT32.h"
 
-FAT32::FAT32(const WCHAR *pFileName) : BaseFileSystem(pFileName) {
+FAT32::FAT32(const WCHAR* pFileName) : BaseFileSystem(pFileName) {
 	LARGE_INTEGER startOffset;
 	startOffset.QuadPart = 0;
 
 	// Читаем 1-й сектор
-	BYTE *pBootRecordBuffer = new BYTE[512];
+	BYTE* pBootRecordBuffer = new BYTE[512];
 	readBytesFromOffset(startOffset, pBootRecordBuffer, 512);
 	
 	// Записываем его в подготовленную структуру BootRecord
-	BootRecord *pBootRecord = reinterpret_cast<BootRecord*>(pBootRecordBuffer);
+	// reinterpret_cast преобразует указатель в указатель типа BootRecord
+	BootRecord* pBootRecord = reinterpret_cast<BootRecord*>(pBootRecordBuffer);
     
 	// Вытаскиваем нужные значения, считаем и записываем размер кластера
+	// static_cast преобразует выражение в тип unsigned int
 	unsigned int bytesPerSector = static_cast<unsigned int>(pBootRecord->bytesPerSector);
 	unsigned int sectorsPerCluster = static_cast<unsigned int>(pBootRecord->sectorsPerCluster);
     unsigned int clusterSize = bytesPerSector * sectorsPerCluster;
@@ -33,7 +35,7 @@ FAT32::FAT32(const WCHAR *pFileName) : BaseFileSystem(pFileName) {
 
 FAT32::~FAT32() {}
 
-void FAT32::readClusterNumber(unsigned int clusterNumber, BYTE *pResultBuffer) {
+void FAT32::readClusterNumber(unsigned int clusterNumber, BYTE* pResultBuffer) {
 	unsigned int clusterSize = getClusterSize();
 	if (clusterSize == 0) {
 		throw "Ошибка чтения кластера: размер кластера не определён";

@@ -18,6 +18,8 @@ private:
     DB db;
 protected:
 	void __fastcall Execute();
+
+    void __fastcall UpdateVST();
 public:
 	__fastcall TDB_VST(bool CreateSuspended);
 

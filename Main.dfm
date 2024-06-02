@@ -230,14 +230,34 @@ object Form1: TForm1
     Font.Height = -23
     Font.Name = 'Segoe UI'
     Font.Style = []
-    Header.AutoSizeIndex = -1
+    Header.AutoSizeIndex = 0
     Header.Height = 35
-    Header.MainColumn = -1
     Header.Options = [hoColumnResize, hoDrag, hoShowSortGlyphs, hoVisible]
     ParentFont = False
     TabOrder = 4
+    OnGetText = ClustersVSTGetText
     Touch.InteractiveGestures = [igPan, igPressAndTap]
     Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
-    Columns = <>
+    Columns = <
+      item
+        Position = 0
+        Text = #8470
+        Width = 53
+      end
+      item
+        Position = 1
+        Text = #8470' '#1082#1083#1072#1089#1090#1077#1088#1072
+        Width = 145
+      end
+      item
+        Position = 2
+        Text = #1058#1080#1087' '#1092#1072#1081#1083#1072
+        Width = 134
+      end
+      item
+        Position = 3
+        Text = #1044#1072#1085#1085#1099#1077
+        Width = 497
+      end>
   end
 end

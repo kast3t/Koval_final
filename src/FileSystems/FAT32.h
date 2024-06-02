@@ -20,8 +20,8 @@ private:
 	} BootRecord;
 	#pragma pack(pop)
 public:
-    virtual void readClusterNumber(unsigned int clusterNumber, BYTE *pResultBuffer);
+	virtual void readClusterNumber(unsigned int clusterNumber, BYTE* pResultBuffer);
 
-    FAT32(const WCHAR *pFileName);
+    FAT32(const WCHAR* pFileName);
     ~FAT32();
 };

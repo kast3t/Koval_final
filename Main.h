@@ -35,6 +35,9 @@ __published:	// IDE-managed Components
 	TRadioButton *PDFButton;
 	void __fastcall StartButtonClick(TObject *Sender);
 	void __fastcall StopButtonClick(TObject *Sender);
+	void __fastcall ClustersVSTGetText(TBaseVirtualTree *Sender, PVirtualNode Node,
+          TColumnIndex Column, TVSTTextType TextType, UnicodeString &CellText);
+
 
 private:	// User declarations
 	TClusterIteratorDecorator* threadClusterIteratorDecorator;
@@ -44,4 +47,10 @@ public:		// User declarations
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;
 //---------------------------------------------------------------------------
+typedef struct {
+	ULONG id;
+	ULONG clusterNumber;
+	UnicodeString clusterType;
+	UnicodeString hexData;
+} NodeStruct;
 #endif

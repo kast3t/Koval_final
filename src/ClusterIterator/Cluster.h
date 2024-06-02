@@ -17,7 +17,7 @@ private:
 public:
 	Cluster();
 	~Cluster();
-	Cluster(unsigned int clusterNumber, BaseFileSystem *fsPtr);
+	Cluster(unsigned int clusterNumber, BaseFileSystem* fsPtr);
 	unsigned int getNumber();
 	void readCluster();
 	BYTE* getData();

@@ -5,7 +5,7 @@ Cluster::Cluster() {
 	fs = NULL;
     clusterType = ClusterEnum::None;
 }
-Cluster::Cluster(unsigned int clusterNumber, BaseFileSystem *fsPtr) {
+Cluster::Cluster(unsigned int clusterNumber, BaseFileSystem* fsPtr) {
 	number = clusterNumber;
 	fs = fsPtr;
     clusterType = ClusterEnum::None;

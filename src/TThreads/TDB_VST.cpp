@@ -14,6 +14,8 @@ __fastcall TDB_VST::TDB_VST(bool CreateSuspended)
 
 	dataSentEvent = new TEvent(NULL, true, false, "", false);
 	dataWrittenEvent = new TEvent(NULL, true, false, "", false);
+
+	currentId = 0;
 }
 //---------------------------------------------------------------------------
 void __fastcall TDB_VST::Execute()
@@ -24,7 +26,9 @@ void __fastcall TDB_VST::Execute()
 			/* Т.к. проставлено событие dataSentEvent, значит поток TClItDec
 			   записал кластер в свойство cluster */
 			dataSentEvent->ResetEvent();
+			currentId++;
 
+			Synchronize(UpdateVST);
 			db.insertData(currentClusterNumber,
 						  currentСlusterTypeChar,
 						  currentСlusterHexData);
@@ -34,6 +38,23 @@ void __fastcall TDB_VST::Execute()
     }
 	delete dataSentEvent;
 	delete dataWrittenEvent;
+}
+
+void __fastcall TDB_VST::UpdateVST()
+{
+	Form1->ClustersVST->BeginUpdate();
+
+	// Добавим дочерний узел-запись
+	PVirtualNode pEntryNode = Form1->ClustersVST->AddChild(Form1->ClustersVST->RootNode);
+
+	// Накладываем NodeStruct на выделенную для узла память
+	NodeStruct* nodeData = (NodeStruct*)Form1->ClustersVST->GetNodeData(pEntryNode);
+	nodeData->id = currentId;
+	nodeData->clusterNumber = currentClusterNumber;
+	nodeData->clusterType = currentСlusterTypeChar;
+	nodeData->hexData = currentСlusterHexData;
+
+    Form1->ClustersVST->EndUpdate();
 }
 
 void __fastcall TDB_VST::sendClusterToTDB(unsigned int currentClusterNumberArg,

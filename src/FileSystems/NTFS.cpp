@@ -9,9 +9,11 @@ NTFS::NTFS(const WCHAR* pFileName) : BaseFileSystem(pFileName) {
 	readBytesFromOffset(startOffset, pBootRecordBuffer, 512);
 
 	// Записываем его в подготовленную структуру BootRecord
+    // reinterpret_cast преобразует указатель в указатель типа BootRecord
 	BootRecord* pBootRecord = reinterpret_cast<BootRecord*>(pBootRecordBuffer);
 
 	// Вытаскиваем нужные значения, считаем и записываем размер кластера
+    // static_cast преобразует выражение в тип unsigned int
 	unsigned int bytesPerSector = static_cast<unsigned int>(pBootRecord->bytesPerSector);
 	unsigned int sectorsPerCluster = static_cast<unsigned int>(pBootRecord->sectorsPerCluster);
 	unsigned int clusterSize = bytesPerSector * sectorsPerCluster;

@@ -76,10 +76,10 @@ void __fastcall TClusterIteratorDecorator::Execute()
 		Synchronize(UpdateClustersFoundLabel);
 	}
 	delete iteratorDecorated;
+	delete fsCreator;
 
 	threadDB_VST->Terminate();
 	delete threadDB_VST;
-	delete fsCreator;
 
 	startButtonEnabled = true;
 	stopButtonEnabled = false;
@@ -115,13 +115,13 @@ void __fastcall TClusterIteratorDecorator::UpdateClustersFoundLabel()
 ClusterEnum __fastcall TClusterIteratorDecorator::getClusterType()
 {
 	if(Form1->PNGButton->Checked) {
-		return  ClusterEnum::PNG;
+		return ClusterEnum::PNG;
 	}
 	else if(Form1->EXEButton->Checked) {
-		return  ClusterEnum::EXE;
+		return ClusterEnum::EXE;
 	}
 	else if(Form1->PDFButton->Checked) {
-		return  ClusterEnum::PDF;
+		return ClusterEnum::PDF;
 	}
 
 	return ClusterEnum::None;

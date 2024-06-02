@@ -1,5 +1,5 @@
 #include "BaseFileSystem.h"
-BaseFileSystem::BaseFileSystem(const WCHAR *pFileName) {
+BaseFileSystem::BaseFileSystem(const WCHAR* pFileName) {
 	clusterSize = 0;
 	totalClusters = 0;
 	fileHandle = INVALID_HANDLE_VALUE;
@@ -13,7 +13,7 @@ BaseFileSystem::BaseFileSystem(const WCHAR *pFileName) {
 BaseFileSystem::~BaseFileSystem() {
 	CloseHandle(fileHandle);
 }
-void BaseFileSystem::readBytesFromOffset(LARGE_INTEGER startOffset, BYTE *pResultBuffer, DWORD bytesToRead) {
+void BaseFileSystem::readBytesFromOffset(LARGE_INTEGER startOffset, BYTE* pResultBuffer, DWORD bytesToRead) {
 	unsigned long filePointer = SetFilePointer(fileHandle, startOffset.LowPart, &startOffset.HighPart, FILE_BEGIN);
 	if (filePointer == INVALID_SET_FILE_POINTER) {
 		throw "Ошибка установки filePointer";
@@ -40,6 +40,7 @@ unsigned int BaseFileSystem::getTotalClusters() const {
 void BaseFileSystem::setPointerTerminated(volatile bool* pTerminatedArg) {
 	pTerminated = pTerminatedArg;
 }
+
 volatile bool BaseFileSystem::getPointerTerminated() {
 	return *pTerminated;
 }
